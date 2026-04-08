@@ -21,7 +21,7 @@ def mapper():
 
 if __name__ == "__main__":
     
-    review_text, review_category = load_example(txt_only=False)
+    review_obj = load_example(txt_only=False)
     stopwords = process_stopwords(load_stopwords("../Assignment_1_Assets/stopwords.txt"))
-    map_line(review_text, stopwords, review_category)
+    map_line(review_obj["reviewText"], stopwords, review_obj["category"])
     
