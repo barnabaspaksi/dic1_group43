@@ -7,11 +7,12 @@ from nonstopword import load_stopwords, process_stopwords
 # and the characters ()[]{}.!?,;:+=-# _"'`~#@&*%€$§\/ as delimiters
 pattern = re.compile(r"[\s()\[\]{}.!?,;:+=\-_\"'`~#@&*%€$§\\/]+")
 
-def map_line(line, stopwords):
+def map_line(line, stopwords, category):
+    sanitized_category = category.replace("\t", " ") # since we emit tuples separated by tabs, we want to avoid tabs in the tokens or categories.
     tokens = pattern.split(line.strip())        
     for token in tokens:        
         if token and len(token) > 1 and token.lower() not in stopwords:  # avoid emitting empty strings, single-character tokens and stopwords                
-            print(f"{token.lower()}\t1") # Emit unigrams after case folding, separated by tabs (which were removed by \s as delimiters)
+            print(f"{token.lower()}\t{sanitized_category}") # Emit unigrams after case folding, separated by tabs (which were removed by \s as delimiters)
 
 def mapper():
     stopwords = process_stopwords(load_stopwords("../Assignment_1_Assets/stopwords.txt"))
