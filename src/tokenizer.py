@@ -23,3 +23,4 @@ if __name__ == "__main__":
     x = load_example()
     stopwords = process_stopwords(load_stopwords("../Assignment_1_Assets/stopwords.txt"))
     map_line(x, stopwords)
+    
